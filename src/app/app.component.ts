@@ -7,9 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'recipe-project';
-  loadedFeature = 'recipe'
+  loadedFeature = 'recipe';
+  dropDown = false;
 
-  onNavigate (feature : string){
+  onNavigate(feature: string) {
     this.loadedFeature = feature;
   }
 }
