@@ -6,6 +6,7 @@ import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { Recipe } from './recipes/recipe.model';
 import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
+import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/recipes', pathMatch: 'full' },
@@ -20,8 +21,16 @@ const routes: Routes = [
         pathMatch: 'full',
       },
       {
+        path: 'new',
+        component: RecipeEditComponent,
+      },
+      {
         path: ':recipe-name',
         component: RecipeDetailComponent,
+      },
+      {
+        path: ':recipe-name/edit',
+        component: RecipeEditComponent,
       },
     ],
   },
