@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 @Injectable()
 export class ShoppingListService {
   ingredientChanged = new Subject<Ingredients[]>();
+  startedEditing = new Subject<number>();
 
   private ingredients: Ingredients[] = [
     new Ingredients('Apple', 5),
