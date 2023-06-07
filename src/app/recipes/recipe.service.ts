@@ -28,7 +28,10 @@ export class RecipeService {
     return this.recipes.find((recipe) => recipe.name === recipeName);
   }
 
-  addIngredientsToShoppingList(ingredients: Ingredients[]) {
-    this.shoppinglistService.addIngredientsFromRecipe(ingredients);
+  addIngredientsArrayToShoppingList(ingredients: Ingredients[]) {
+    this.shoppinglistService.addIngredientsArrayFromRecipe(ingredients);
+  }
+  addIngredientToShoppingList(ingredient: Ingredients) {
+    this.shoppinglistService.addIngredientFromRecipe(ingredient);
   }
 }

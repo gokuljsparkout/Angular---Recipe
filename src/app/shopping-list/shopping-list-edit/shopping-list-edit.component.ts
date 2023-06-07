@@ -26,7 +26,7 @@ export class ShoppingListEditComponent implements OnInit {
       this.shoppingListService.updateAmount(
         foundIngredient.index,
         newIngredient.amount
-      );
+      );  
     } else {
       this.shoppingListService.AddIngredient(newIngredient);
     }

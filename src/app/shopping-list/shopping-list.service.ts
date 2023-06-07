@@ -45,11 +45,16 @@ export class ShoppingListService {
     }
   }
 
-  addIngredientsFromRecipe(ingredients: Ingredients[]) {
+  addIngredientsArrayFromRecipe(ingredients: Ingredients[]) {
     // for (let ingredient of ingredients) {
     //   this.AddIngredient(ingredient);
     // }
     this.ingredients.push(...ingredients);
+    this.ingredientChanged.next(this.ingredients.slice());
+  }
+
+  addIngredientFromRecipe(ingredient: Ingredients) {
+    this.ingredients.push(ingredient);
     this.ingredientChanged.next(this.ingredients.slice());
   }
 
