@@ -26,7 +26,7 @@ export class ShoppingListEditComponent implements OnInit {
       this.shoppingListService.updateAmount(
         foundIngredient.index,
         newIngredient.amount
-      );  
+      );
     } else {
       this.shoppingListService.AddIngredient(newIngredient);
     }
@@ -36,7 +36,7 @@ export class ShoppingListEditComponent implements OnInit {
   }
 
   onDeleteItem() {
-    this.shoppingListService.DeleteIngredient(this.editedItem);
+    this.shoppingListService.DeleteIngredient(this.editedItemIndex);
   }
   onClear() {
     this.addItemForm.reset();

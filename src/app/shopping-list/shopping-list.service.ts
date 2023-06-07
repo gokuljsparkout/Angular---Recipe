@@ -16,10 +16,11 @@ export class ShoppingListService {
     this.ingredients.push(ingredient);
     this.ingredientChanged.next(this.ingredients.slice());
   }
-  DeleteIngredient(deleteIngredient: Ingredients) {
-    this.ingredients = this.ingredients.filter(
-      (ingredient) => deleteIngredient !== ingredient
-    );
+  DeleteIngredient(index) {
+    // this.ingredients = this.ingredients.filter(
+    //   (ingredient) => deleteIngredient !== ingredient
+    // );
+    this.ingredients.splice(index, 1);
     this.ingredientChanged.next(this.ingredients.slice());
   }
   updateAmount(index: number, quantity: number) {
