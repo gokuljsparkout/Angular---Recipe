@@ -20,20 +20,27 @@ export class ShoppingListEditComponent implements OnInit {
   onAddItem() {
     const value = this.addItemForm.value;
     const newIngredient = new Ingredients(value.name, value.amount);
-    this.shoppingListService.AddIngredient(newIngredient);
+    const foundIngredient =
+      this.shoppingListService.checkforExisitingIngredient(newIngredient);
+    if (foundIngredient.isExisting) {
+      this.shoppingListService.updateAmount(
+        foundIngredient.index,
+        newIngredient.amount
+      );
+    } else {
+      this.shoppingListService.AddIngredient(newIngredient);
+    }
+
     this.addItemForm.reset();
+    this.editMode = false;
   }
 
   onDeleteItem() {
     this.shoppingListService.DeleteIngredient(this.editedItem);
   }
-
-  check() {}
   onClear() {
-    this.addItemForm.setValue({
-      name: '',
-      amount: null,
-    });
+    this.addItemForm.reset();
+    this.editMode = false;
   }
 
   onUpdateItem() {

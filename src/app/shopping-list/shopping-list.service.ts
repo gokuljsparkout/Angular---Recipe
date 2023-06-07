@@ -22,6 +22,9 @@ export class ShoppingListService {
     );
     this.ingredientChanged.next(this.ingredients.slice());
   }
+  updateAmount(index: number, quantity: number) {
+    this.ingredients[index].amount += quantity;
+  }
 
   getIngredients() {
     return this.ingredients.slice();
@@ -29,6 +32,17 @@ export class ShoppingListService {
 
   getIngredientsbyIndex(index: number) {
     return this.ingredients[index];
+  }
+  checkforExisitingIngredient(checkIngredient: Ingredients) {
+    const found = this.ingredients.findIndex((ingredient) => {
+      return checkIngredient.name === ingredient.name;
+    });
+    console.log(found);
+    if (found !== -1) {
+      return { isExisting: true, index: found };
+    } else {
+      return { isExisting: false, index: found };
+    }
   }
 
   addIngredientsFromRecipe(ingredients: Ingredients[]) {
@@ -40,6 +54,7 @@ export class ShoppingListService {
   }
 
   updateIngredients(index: number, updatedIngredient: Ingredients) {
+    console.log('ui' + index);
     this.ingredients[index] = updatedIngredient;
     this.ingredientChanged.next(this.ingredients.slice());
   }
