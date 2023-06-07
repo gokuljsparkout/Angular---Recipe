@@ -11,21 +11,58 @@ import { Subscription } from 'rxjs';
 })
 export class ShoppingListEditComponent implements OnInit {
   subscription: Subscription;
+  firstInitialization = true;
   editMode = false;
   editedItemIndex: number;
+  editedItem: Ingredients;
   constructor(private shoppingListService: ShoppingListService) {}
   @ViewChild('addItemForm') addItemForm: NgForm;
   onAddItem() {
     const value = this.addItemForm.value;
     const newIngredient = new Ingredients(value.name, value.amount);
     this.shoppingListService.AddIngredient(newIngredient);
+    this.addItemForm.reset();
+  }
+
+  onDeleteItem() {
+    this.shoppingListService.DeleteIngredient(this.editedItem);
+  }
+
+  check() {}
+  onClear() {
+    this.addItemForm.setValue({
+      name: '',
+      amount: null,
+    });
+  }
+
+  onUpdateItem() {
+    const value = this.addItemForm.value;
+    const updatedIngredient = new Ingredients(value.name, value.amount);
+    this.shoppingListService.updateIngredients(
+      this.editedItemIndex,
+      updatedIngredient
+    );
+    this.addItemForm.reset();
+    this.editMode = false;
   }
 
   ngOnInit() {
     this.subscription = this.shoppingListService.startedEditing.subscribe(
       (index: number) => {
         this.editedItemIndex = index;
-        this.editMode = true;
+        if (this.firstInitialization) {
+          this.editMode = true;
+          this.firstInitialization = false;
+        } else {
+          this.editMode = !this.editMode;
+        }
+        this.shoppingListService.editModeChanged.next(this.editMode);
+        this.editedItem = this.shoppingListService.getIngredientsbyIndex(index);
+        this.addItemForm.setValue({
+          name: this.editedItem.name,
+          amount: this.editedItem.amount,
+        });
       }
     );
   }

@@ -10,13 +10,13 @@ export class RecipeService {
     new Recipe(
       'Burger',
       'This is a Test',
-      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&resize=556,505',
+      'https://c.ndtvimg.com/2022-06/gp4k2jro_burgers_625x300_20_June_22.jpg?im=FeatureCrop,algorithm=dnn,size=626',
       [new Ingredients('Meat', 1), new Ingredients('French Fries', 20)]
     ),
     new Recipe(
       'Pizza',
       'This is a Test',
-      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&resize=556,505',
+      'https://img.freepik.com/free-photo/top-view-pepperoni-pizza-sliced-into-six-slices_141793-2157.jpg?size=626&ext=jpg',
       [new Ingredients('Meat', 1), new Ingredients('French Fries', 20)]
     ),
   ];
