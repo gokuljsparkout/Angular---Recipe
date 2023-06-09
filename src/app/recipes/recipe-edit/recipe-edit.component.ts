@@ -20,6 +20,7 @@ export class RecipeEditComponent implements OnInit {
     private recipeService: RecipeService
   ) {}
   onSubmit() {
+    console.log(this.addRecipeForm.value);
     const edittedRecipe = this.addRecipeForm.value;
     if (this.editMode) {
       this.recipeService.recipeEdit(edittedRecipe, this.recipeIndex);
@@ -28,6 +29,7 @@ export class RecipeEditComponent implements OnInit {
       this.addRecipeForm.reset();
     }
     this.recipeService.recipeEditted.next(null);
+    console.log(this.addRecipeForm.get('ingredients'));
   }
 
   ngOnInit() {
@@ -48,6 +50,19 @@ export class RecipeEditComponent implements OnInit {
 
   onCancel() {
     this.addRecipeForm.reset();
+  }
+
+  onAddIngredient() {
+    (<FormArray>this.addRecipeForm.get('ingredients')).push(
+      new FormGroup({
+        name: new FormControl(),
+        amount: new FormControl(),
+      })
+    );
+  }
+
+  onDeleteIngredient(i) {
+    (<FormArray>this.addRecipeForm.get('ingredients')).removeAt(i);
   }
 
   private initForm() {
