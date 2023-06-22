@@ -10,7 +10,7 @@ import { Ingredients } from 'src/app/shared/ingredients.model';
   styleUrls: ['./recipe-edit.component.css'],
 })
 export class RecipeEditComponent implements OnInit {
-  addRecipeForm: FormGroup;
+  addRecipeForm: FormGroup;b
   recipeName: string;
   editMode: boolean = false;
   recipeIndex: number;
